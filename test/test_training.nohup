@@ -1,0 +1,47 @@
+Using TensorFlow backend.
+./lib/pre_processing.py:65: RuntimeWarning: invalid value encountered in true_divide
+  imgs_normalized[i] = ((imgs_normalized[i] - np.min(imgs_normalized[i])) / (np.max(imgs_normalized[i])-np.min(imgs_normalized[i])))*255
+
+train images/masks shape:
+(20, 1, 565, 565)
+train images range (min-max): 0.00784313725490196 - 1.0
+train masks are within 0-1
+
+patches per full image: 9500
+
+train PATCHES images/masks shape:
+(190000, 1, 48, 48)
+train PATCHES images range (min-max): 0.00784313725490196 - 1.0
+2020-05-10 01:31:50.484724: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2020-05-10 01:31:50.484829: E tensorflow/stream_executor/cuda/cuda_driver.cc:313] failed call to cuInit: UNKNOWN ERROR (303)
+2020-05-10 01:31:50.484885: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (ITEM-S74527): /proc/driver/nvidia/version does not exist
+2020-05-10 01:31:50.485335: I tensorflow/core/platform/cpu_feature_guard.cc:143] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-05-10 01:31:50.493484: I tensorflow/core/platform/profile_utils/cpu_utils.cc:102] CPU Frequency: 1896000000 Hz
+2020-05-10 01:31:50.495369: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7f10a0000b20 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-05-10 01:31:50.495444: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+Check: final output of the network:
+(None, 2304, 2)
+./src/retinaNN_training.py:191: UserWarning: The `nb_epoch` argument in `fit` has been renamed `epochs`.
+  model.fit(patches_imgs_train, patches_masks_train, nb_epoch=N_epochs, batch_size=batch_size, verbose=2, shuffle=True, validation_split=0.1, callbacks=[checkpointer])
+Train on 171000 samples, validate on 19000 samples
+Epoch 1/1
+Traceback (most recent call last):
+  File "./src/retinaNN_training.py", line 191, in <module>
+    model.fit(patches_imgs_train, patches_masks_train, nb_epoch=N_epochs, batch_size=batch_size, verbose=2, shuffle=True, validation_split=0.1, callbacks=[checkpointer])
+  File "/opt/condaEnv/miniconda3/envs/workenv/lib/python3.6/site-packages/keras/engine/training.py", line 1239, in fit
+    validation_freq=validation_freq)
+  File "/opt/condaEnv/miniconda3/envs/workenv/lib/python3.6/site-packages/keras/engine/training_arrays.py", line 196, in fit_loop
+    outs = fit_function(ins_batch)
+  File "/opt/condaEnv/miniconda3/envs/workenv/lib/python3.6/site-packages/tensorflow/python/keras/backend.py", line 3792, in __call__
+    outputs = self._graph_fn(*converted_inputs)
+  File "/opt/condaEnv/miniconda3/envs/workenv/lib/python3.6/site-packages/tensorflow/python/eager/function.py", line 1605, in __call__
+    return self._call_impl(args, kwargs)
+  File "/opt/condaEnv/miniconda3/envs/workenv/lib/python3.6/site-packages/tensorflow/python/eager/function.py", line 1645, in _call_impl
+    return self._call_flat(args, self.captured_inputs, cancellation_manager)
+  File "/opt/condaEnv/miniconda3/envs/workenv/lib/python3.6/site-packages/tensorflow/python/eager/function.py", line 1746, in _call_flat
+    ctx, args, cancellation_manager=cancellation_manager))
+  File "/opt/condaEnv/miniconda3/envs/workenv/lib/python3.6/site-packages/tensorflow/python/eager/function.py", line 598, in call
+    ctx=ctx)
+  File "/opt/condaEnv/miniconda3/envs/workenv/lib/python3.6/site-packages/tensorflow/python/eager/execute.py", line 60, in quick_execute
+    inputs, attrs, num_outputs)
+KeyboardInterrupt
